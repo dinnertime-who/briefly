@@ -1,0 +1,29 @@
+# docker-compose.yml
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: briefly-postgres
+    ports:
+      - "12225:5432"
+    environment:
+      POSTGRES_USER: briefly_user
+      POSTGRES_PASSWORD: briefly_password
+      POSTGRES_DB: briefly_db
+    volumes:
+      - briefly-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: briefly-redis
+    ports:
+      - "12226:6379"
+    volumes:
+      - briefly-redis-data:/data
+    restart: unless-stopped
+
+volumes:
+  briefly-db-data:
+  briefly-redis-data:

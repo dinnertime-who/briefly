@@ -1,11 +1,10 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
-import { test } from "./test";
 
 const app = new Hono();
 
 app.get("/", (c) => {
-  return c.text(test());
+  return c.text("Hello World");
 });
 
 serve(
