@@ -1,159 +1,52 @@
-# Turborepo starter
+# ⚡️ Briefly (브리플리)
 
-This Turborepo starter is maintained by the Turborepo core team.
+> **"채팅은 가볍게, 업무 정리는 완벽하게"**
+> 실시간 채팅과 AI 요약/할 일(Action Item) 추출을 결합한 B2B 생산성 메신저
 
-## Using this example
+## 🏗️ Architecture & Tech Stack
 
-Run the following command:
+가장 빠르고 안정적인 가설 검증을 위해, 검증된 기술 스택과 모노레포 아키텍처를 채택
 
-```sh
-npx create-turbo@latest
-```
+### 📦 Core Infrastructure
+- **Monorepo:** Turborepo
+- **Package Manager:** pnpm
+- **Linter & Formatter:** Biome (단일 진실 공급원으로 최상위 제어)
+- **Deployment:** Railway (Web, API, Worker, DB, Redis 통합 배포)
 
-## What's inside?
+### 💻 Apps (Applications)
+| App | Tech Stack | Description |
+| :--- | :--- | :--- |
+| **`web`** | Next.js, Zustand, Tailwind | FSD(Feature-Sliced Design) 아키텍처 기반 프론트엔드. Claude Code를 활용한 UI/UX 자동화. |
+| **`api`** | NestJS, Socket.io, better-auth | 메인 HTTP API 및 실시간 상태(Stateful)를 관리하는 웹소켓 게이트웨이. 단일 포트로 통합 운영. |
+| **`worker`** | Hono (Node.js), BullMQ | 무거운 AI 요약 작업을 비동기로 처리하는 독립된 Stateless 백그라운드 워커. |
 
-This Turborepo includes the following packages/apps:
+### 🛠️ Packages (Shared)
+| Package | Tech Stack | Description |
+| :--- | :--- | :--- |
+| **`@briefly/db`** | PostgreSQL, Drizzle ORM | 모노레포 내 단일 진실 공급원(SSOT)으로 작동하는 DB 스키마 & 클라이언트. |
+| **`@briefly/redis`** | ioredis, BullMQ | API와 Worker 간의 오타 방지 및 타입 안정성을 위한 공유 Redis 클라이언트, Queue 이름, Job Payload 타입 정의. |
+| **`@briefly/typescript-config`** | TypeScript | 프로젝트 전체의 타입 일관성을 유지하는 공통 Base 설정. |
 
-### Apps and Packages
+### 🔗 External Services
+- **AI Engine:** Google Gemini API (대화 컨텍스트 주입 방식, RAG 미사용)
+- **Message Queue:** Redis (BullMQ 기반 작업 대기열 및 토큰 레이트 리밋 제어)
+- **Object Storage:** Cloudflare R2 (Pre-signed URL 방식을 통한 서버 부하 없는 첨부파일 업로드/다운로드)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+---
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 📂 Project Structure
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo build --filter=docs
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+```text
+briefly-monorepo/
+├── apps/
+│   ├── web/           # Next.js 프론트엔드 (UI & Client Socket)
+│   ├── api/           # NestJS 메인 서버 (Auth, R2 서명, Socket Broadcast)
+│   └── worker/        # Hono 워커 (BullMQ Consumer, Gemini API 호출)
+│
+├── packages/
+│   ├── db/            # Drizzle ORM 스키마 (apps/api와 apps/worker에서 공유)
+│   ├── redis/         # Redis 클라이언트 및 BullMQ 타입/상수 공유
+│   └── typescript-config/ # 공통 TS 설정
+│
+├── biome.json         # 모노레포 전역 코드 스타일 & 린트 룰
+└── pnpm-workspace.yaml
