@@ -27,6 +27,7 @@
 | **`@briefly/ui`** | shadcn/ui, Tailwind CSS v4, React 19 | 모노레포 전체에서 공유하는 UI 컴포넌트 라이브러리. shadcn(base-mira 스타일)으로 관리. |
 | **`@briefly/db`** | PostgreSQL, Drizzle ORM | 모노레포 내 단일 진실 공급원(SSOT)으로 작동하는 DB 스키마 & 클라이언트. |
 | **`@briefly/redis`** | ioredis, BullMQ | API와 Worker 간의 오타 방지 및 타입 안정성을 위한 공유 Redis 클라이언트, Queue 이름, Job Payload 타입 정의. |
+| **`@briefly/auth`** | Better Auth | 모노레포 전체에서 공유하는 인증 설정 중앙화 패키지. Auth 인스턴스, 클라이언트, 커스텀 플러그인을 제공. |
 | **`@briefly/typescript-config`** | TypeScript | 프로젝트 전체의 타입 일관성을 유지하는 공통 Base 설정. |
 
 ### 🔗 External Services
@@ -49,6 +50,7 @@ briefly-monorepo/
 ├── packages/
 │   ├── ui/            # 공유 UI 컴포넌트 라이브러리 (shadcn/ui, Tailwind CSS v4)
 │   ├── db/            # Drizzle ORM 스키마 (apps/api와 apps/worker에서 공유)
+│   ├── auth/          # Better Auth 인증 설정 중앙화 (config, client, plugin)
 │   ├── redis/         # Redis 클라이언트 및 BullMQ 타입/상수 공유
 │   └── typescript-config/ # 공통 TS 설정
 │
