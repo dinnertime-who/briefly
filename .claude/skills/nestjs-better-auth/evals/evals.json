@@ -1,0 +1,113 @@
+{
+  "skill_name": "nestjs-better-auth",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "briefly 프로젝트의 apps/api에 Better Auth를 세팅해줘. main.ts, app.module.ts, auth.ts 파일을 만들거나 수정해서 AuthModule을 등록하고, @briefly/db의 Drizzle 어댑터를 연결해줘. 패키지 설치도 포함해줘.",
+      "expected_output": "main.ts에 bodyParser: false 추가, app.module.ts에 AuthModule.forRoot() 등록, auth.ts에 betterAuth + drizzleAdapter 설정, pnpm add @thallesp/nestjs-better-auth 실행",
+      "files": [],
+      "assertions": [
+        {
+          "name": "bodyParser_false_in_main",
+          "description": "main.ts에 bodyParser: false 옵션이 있어야 함",
+          "type": "file_contains",
+          "file_pattern": "main.ts",
+          "expected": "bodyParser: false"
+        },
+        {
+          "name": "AuthModule_forRoot_registered",
+          "description": "app.module.ts에 AuthModule.forRoot() 호출이 있어야 함",
+          "type": "file_contains",
+          "file_pattern": "app.module.ts",
+          "expected": "AuthModule.forRoot"
+        },
+        {
+          "name": "drizzle_adapter_used",
+          "description": "auth.ts에 drizzleAdapter가 사용되어야 함",
+          "type": "file_contains",
+          "file_pattern": "auth.ts",
+          "expected": "drizzleAdapter"
+        },
+        {
+          "name": "package_installed",
+          "description": "package.json에 @thallesp/nestjs-better-auth 의존성이 추가되어야 함",
+          "type": "file_contains",
+          "file_pattern": "package.json",
+          "expected": "@thallesp/nestjs-better-auth"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "apps/api에서 users 컨트롤러를 만들어줘. GET /users/me는 로그인한 유저만 접근 가능하고 @Session()으로 세션을 받아야 해. GET /users/public은 누구나 접근 가능해야 하고. GET /users/profile은 인증이 선택적이어야 해.",
+      "expected_output": "@Session() 데코레이터로 세션 주입, @AllowAnonymous()로 public 라우트, @OptionalAuth()로 optional 라우트, UserSession 타입 사용",
+      "files": [],
+      "assertions": [
+        {
+          "name": "session_decorator_used",
+          "description": "@Session() 데코레이터가 사용되어야 함",
+          "type": "file_contains",
+          "file_pattern": "users.controller.ts",
+          "expected": "@Session()"
+        },
+        {
+          "name": "allow_anonymous_used",
+          "description": "@AllowAnonymous() 데코레이터가 public 라우트에 사용되어야 함",
+          "type": "file_contains",
+          "file_pattern": "users.controller.ts",
+          "expected": "@AllowAnonymous()"
+        },
+        {
+          "name": "optional_auth_used",
+          "description": "@OptionalAuth() 데코레이터가 사용되어야 함",
+          "type": "file_contains",
+          "file_pattern": "users.controller.ts",
+          "expected": "@OptionalAuth()"
+        },
+        {
+          "name": "user_session_type",
+          "description": "UserSession 타입이 import되어야 함",
+          "type": "file_contains",
+          "file_pattern": "users.controller.ts",
+          "expected": "UserSession"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "apps/api에 admin 컨트롤러를 만들어줘. 시스템 레벨 admin만 접근 가능한 GET /admin/dashboard와, 조직의 owner 또는 admin만 접근 가능한 GET /admin/org-settings를 구현해줘. 두 역할 체크의 차이점도 주석으로 설명해줘.",
+      "expected_output": "@Roles(['admin'])로 시스템 레벨 보호, @OrgRoles(['owner', 'admin'])으로 조직 레벨 보호, 두 데코레이터의 차이(권한 에스컬레이션 방지)에 대한 주석 포함",
+      "files": [],
+      "assertions": [
+        {
+          "name": "roles_decorator_used",
+          "description": "@Roles() 데코레이터가 사용되어야 함",
+          "type": "file_contains",
+          "file_pattern": "admin.controller.ts",
+          "expected": "@Roles"
+        },
+        {
+          "name": "org_roles_decorator_used",
+          "description": "@OrgRoles() 데코레이터가 사용되어야 함",
+          "type": "file_contains",
+          "file_pattern": "admin.controller.ts",
+          "expected": "@OrgRoles"
+        },
+        {
+          "name": "privilege_escalation_comment",
+          "description": "권한 에스컬레이션 방지에 대한 설명이 있어야 함",
+          "type": "file_contains_any",
+          "file_pattern": "admin.controller.ts",
+          "expected_any": ["에스컬레이션", "escalation", "org admin", "조직 admin"]
+        },
+        {
+          "name": "correct_imports",
+          "description": "@thallesp/nestjs-better-auth에서 Roles와 OrgRoles를 import해야 함",
+          "type": "file_contains",
+          "file_pattern": "admin.controller.ts",
+          "expected": "@thallesp/nestjs-better-auth"
+        }
+      ]
+    }
+  ]
+}
