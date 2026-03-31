@@ -11,6 +11,7 @@ import { auth } from "./auth";
       bodyParser: {
         json: { limit: "5mb" },
         urlencoded: { limit: "5mb", extended: true },
+        rawBody: true,
       },
     }),
   ],
