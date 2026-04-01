@@ -1,0 +1,37 @@
+{
+  "name": "@briefly/email",
+  "version": "0.1.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup"
+  },
+  "dependencies": {
+    "@react-email/components": "^0.0.36",
+    "@react-email/render": "^1.4.0",
+    "react": "^19.2.4",
+    "resend": "^4.8.0"
+  },
+  "devDependencies": {
+    "@briefly/typescript-config": "workspace:*",
+    "@types/node": "^24.12.0",
+    "@types/react": "^19.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "5.9.3"
+  }
+}
