@@ -1,23 +1,13 @@
-import {
-  Body,
-  Button,
-  Container,
-  Head,
-  Heading,
-  Hr,
-  Html,
-  Preview,
-  Text,
-} from "@react-email/components";
+import { Body, Button, Container, Head, Heading, Hr, Html, Preview, Text } from "@react-email/components";
 
-export interface VerifyEmailProps {
+export type VerifyEmailProps = {
   username: string;
   verificationUrl: string;
-}
+};
 
 export function VerifyEmail({ username, verificationUrl }: VerifyEmailProps) {
   return (
-    <Html lang="en">
+    <Html lang="ko">
       <Head />
       <Preview>Briefly 이메일 주소를 인증해주세요</Preview>
       <Body style={body}>
@@ -25,20 +15,17 @@ export function VerifyEmail({ username, verificationUrl }: VerifyEmailProps) {
           <Heading style={heading}>이메일 주소 인증</Heading>
           <Text style={paragraph}>안녕하세요, {username}님!</Text>
           <Text style={paragraph}>
-            Briefly에 가입해주셔서 감사합니다. 아래 버튼을 클릭하여 이메일
-            주소를 인증해주세요.
+            Briefly에 가입해주셔서 감사합니다. 아래 버튼을 클릭하여 이메일 주소를 인증해주세요.
           </Text>
           <Button style={button} href={verificationUrl}>
             이메일 인증하기
           </Button>
-          <Text style={hint}>
-            버튼이 작동하지 않는 경우 아래 링크를 브라우저에 직접 붙여넣으세요.
-          </Text>
+          <Text style={hint}>버튼이 작동하지 않는 경우 아래 링크를 브라우저에 직접 붙여넣으세요.</Text>
           <Text style={link}>{verificationUrl}</Text>
           <Hr style={hr} />
           <Text style={footer}>
-            이 이메일은 Briefly 회원가입 시 자동으로 발송됩니다. 본인이
-            요청하지 않은 경우 이 이메일을 무시하셔도 됩니다.
+            이 이메일은 Briefly 회원가입 시 자동으로 발송됩니다. 본인이 요청하지 않은 경우 이 이메일을 무시하셔도
+            됩니다.
           </Text>
         </Container>
       </Body>
@@ -48,8 +35,7 @@ export function VerifyEmail({ username, verificationUrl }: VerifyEmailProps) {
 
 const body = {
   backgroundColor: "#f6f9fc",
-  fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 };
 
 const container = {

@@ -1,6 +1,6 @@
 import { authConfig, betterAuth, drizzleAdapter } from "@briefly/auth";
-import { sendVerificationEmail } from "@briefly/email";
 import { createDbClient } from "@briefly/db";
+import { sendVerificationEmail } from "@briefly/email";
 
 const db = createDbClient(process.env.DATABASE_URL!);
 

@@ -1,23 +1,20 @@
 import { render } from "@react-email/render";
 import { createElement } from "react";
-import { VerifyEmail } from "./templates";
 import { createResendClient } from "./resend";
+import { VerifyEmail } from "./templates";
 
-export interface EmailConfig {
+export type EmailConfig = {
   apiKey: string;
   from: string;
-}
+};
 
-export interface SendVerificationEmailOptions {
+export type SendVerificationEmailOptions = {
   to: string;
   username: string;
   verificationUrl: string;
-}
+};
 
-export async function sendVerificationEmail(
-  config: EmailConfig,
-  options: SendVerificationEmailOptions,
-): Promise<void> {
+export async function sendVerificationEmail(config: EmailConfig, options: SendVerificationEmailOptions) {
   const resend = createResendClient(config.apiKey);
   const html = await render(
     createElement(VerifyEmail, {
