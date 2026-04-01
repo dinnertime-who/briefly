@@ -14,6 +14,8 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "pg" }),
   trustedOrigins: [process.env.WEB_URL ?? "http://localhost:3000"],
   emailVerification: {
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, url }) => {
       await sendVerificationEmail(emailConfig, {
         to: user.email,
