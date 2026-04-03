@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "export PATH=\"$HOME/.nvm/versions/node/v22.18.0/bin:$HOME/Library/pnpm:$PATH\" && cd \"$CLAUDE_PROJECT_DIR\" && pnpm check 2>&1 | tail -20",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && pnpm check 2>&1 | tail -20",
             "timeout": 60
           }
         ]
