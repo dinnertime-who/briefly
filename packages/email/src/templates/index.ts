@@ -1,2 +1,2 @@
-export { VerifyEmail } from "./verify-email";
 export type { VerifyEmailProps } from "./verify-email";
+export { VerifyEmail } from "./verify-email";
