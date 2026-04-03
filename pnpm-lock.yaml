@@ -355,6 +355,21 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  packages/utils:
+    devDependencies:
+      '@briefly/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: ^24.12.0
+        version: 24.12.0
+      tsup:
+        specifier: ^8.5.1
+        version: 8.5.1(@swc/core@1.15.21)(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)(typescript@6.0.2)
+      typescript:
+        specifier: 6.0.2
+        version: 6.0.2
+
 packages:
 
   '@alloc/quick-lru@5.2.0':
@@ -5363,6 +5378,11 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  typescript@6.0.2:
+    resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   ufo@1.6.3:
     resolution: {integrity: sha512-yDJTmhydvl5lJzBmy/hyOAA0d+aqCBuwl818haVdYCRrWV84o7YyeVm4QlVHStqNrrJSTb6jKuFAVqAFsr+K3Q==}
 
@@ -10251,6 +10271,35 @@ snapshots:
       - tsx
       - yaml
 
+  tsup@8.5.1(@swc/core@1.15.21)(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)(typescript@6.0.2):
+    dependencies:
+      bundle-require: 5.1.0(esbuild@0.27.4)
+      cac: 6.7.14
+      chokidar: 4.0.3
+      consola: 3.4.2
+      debug: 4.4.3
+      esbuild: 0.27.4
+      fix-dts-default-cjs-exports: 1.0.1
+      joycon: 3.1.1
+      picocolors: 1.1.1
+      postcss-load-config: 6.0.1(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)
+      resolve-from: 5.0.0
+      rollup: 4.60.1
+      source-map: 0.7.6
+      sucrase: 3.35.1
+      tinyexec: 0.3.2
+      tinyglobby: 0.2.15
+      tree-kill: 1.2.2
+    optionalDependencies:
+      '@swc/core': 1.15.21
+      postcss: 8.5.8
+      typescript: 6.0.2
+    transitivePeerDependencies:
+      - jiti
+      - supports-color
+      - tsx
+      - yaml
+
   tsx@4.21.0:
     dependencies:
       esbuild: 0.27.4
@@ -10287,6 +10336,8 @@ snapshots:
   typedarray@0.0.6: {}
 
   typescript@5.9.3: {}
+
+  typescript@6.0.2: {}
 
   ufo@1.6.3: {}
 
