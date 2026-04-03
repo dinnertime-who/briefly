@@ -40,6 +40,7 @@ pnpm --filter @briefly/db push      # DB 스키마 반영
 - [TypeScript](docs/conventions/typescript.md)
 - [데이터베이스 (Drizzle ORM)](docs/conventions/database.md)
 - [패키지 구조 및 의존성](docs/conventions/packages.md)
+- [Git 브랜치 전략](docs/conventions/git.md)
 
 
 ### 실행 계획

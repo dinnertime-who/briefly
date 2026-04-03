@@ -12,6 +12,8 @@ dangerous_patterns=(
   "rm -rf \$HOME"
   "git push --force"
   "git push -f"
+  "git push origin main"
+  "git push origin develop"
   "DROP TABLE"
   "DROP DATABASE"
   "truncate"
