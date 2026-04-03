@@ -1,6 +1,9 @@
 ---
 name: start-feature
-description: develop 브랜치를 최신화하고 feature/* 브랜치를 생성한다
+description: >
+  새 기능 구현을 시작할 때 자동으로 사용한다.
+  "~~ 만들어줘", "~~ 구현해줘", "~~ 기능 추가해줘" 등 새 작업 요청이 오면
+  현재 브랜치가 feature/*가 아닌 경우 코드 작성 전에 항상 이 스킬을 먼저 실행한다.
 user-invocable: true
 arguments:
   - name: feature-name
