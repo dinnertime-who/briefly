@@ -9,8 +9,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@briefly/hooks": "workspace:*",
     "@briefly/ui": "workspace:*",
     "next": "16.2.2",
+    "nuqs": "^2.8.9",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
