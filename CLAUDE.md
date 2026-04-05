@@ -43,6 +43,9 @@ pnpm --filter @briefly/db push      # DB 스키마 반영
 - [Git 브랜치 전략](docs/conventions/git.md)
 - [@briefly/utils 패키지](docs/conventions/utils.md)
 
+### 프레임워크 컨벤션
+- [NestJS](docs/conventions/framework/nestjs.md)
+
 
 ### 실행 계획
 - [진행 중인 계획](docs/exec-plans/active/)
