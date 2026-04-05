@@ -216,12 +216,6 @@ getMe(@CurrentUser() user: UserPayload) {
 
 `@nestjs/swagger`를 사용해 API 문서를 자동 생성한다.
 
-### 설치
-
-```sh
-pnpm --filter @briefly/api add @nestjs/swagger swagger-ui-express
-```
-
 ### 초기 설정
 
 `main.ts`에서 `DocumentBuilder`로 문서를 구성하고, `/api` 경로에 Swagger UI를 마운트한다.
