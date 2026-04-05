@@ -1,26 +1,15 @@
 import Link from "next/link";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/shared/ui";
 import { SignUpForm } from "@/features/sign-up";
 import { ROUTES } from "@/shared/config";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/shared/ui";
 
 export function SignUpView() {
   return (
     <div className="w-full max-w-[360px]">
       <Card className="shadow-none border-0 ring-1 ring-foreground/8">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold tracking-tight">
-            계정 만들기
-          </CardTitle>
-          <CardDescription>
-            팀에 합류해 업무를 함께 관리하세요
-          </CardDescription>
+          <CardTitle className="text-sm font-semibold tracking-tight">계정 만들기</CardTitle>
+          <CardDescription>팀에 합류해 업무를 함께 관리하세요</CardDescription>
         </CardHeader>
 
         <CardContent className="pt-2">
