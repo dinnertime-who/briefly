@@ -212,9 +212,124 @@ getMe(@CurrentUser() user: UserPayload) {
 }
 ```
 
+## OpenAPI (Swagger)
+
+`@nestjs/swagger`를 사용해 API 문서를 자동 생성한다.
+
+### 설치
+
+```sh
+pnpm --filter @briefly/api add @nestjs/swagger swagger-ui-express
+```
+
+### 초기 설정
+
+`main.ts`에서 `DocumentBuilder`로 문서를 구성하고, `/api` 경로에 Swagger UI를 마운트한다.
+
+```ts
+// main.ts
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  const config = new DocumentBuilder()
+    .setTitle('Briefly API')
+    .setDescription('Briefly API 문서')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
+  await app.listen(process.env.PORT ?? 8000);
+}
+```
+
+### 컨트롤러 데코레이터
+
+```ts
+@ApiTags('users')           // Swagger UI에서 그룹화
+@Controller('users')
+export class UsersController {
+
+  @ApiOperation({ summary: '사용자 목록 조회' })
+  @ApiResponse({ status: 200, description: '조회 성공', type: [UserDto] })
+  @ApiResponse({ status: 401, description: '인증 필요' })
+  @Get()
+  findAll() { ... }
+
+  @ApiOperation({ summary: '사용자 단건 조회' })
+  @ApiParam({ name: 'id', description: '사용자 UUID' })
+  @ApiResponse({ status: 200, type: UserDto })
+  @ApiResponse({ status: 404, description: '사용자 없음' })
+  @Get(':id')
+  findOne(@Param('id') id: string) { ... }
+
+  @ApiOperation({ summary: '사용자 생성' })
+  @ApiBody({ type: CreateUserDto })
+  @ApiResponse({ status: 201, type: UserDto })
+  @Post()
+  create(@Body() dto: CreateUserDto) { ... }
+}
+```
+
+### DTO 문서화
+
+DTO의 모든 프로퍼티에 `@ApiProperty`를 붙인다. `UpdateDto`는 `@nestjs/swagger`의 `PartialType`을 사용해 Swagger 메타데이터가 유지되도록 한다.
+
+```ts
+// create-user.dto.ts
+export class CreateUserDto {
+  @ApiProperty({ example: '홍길동', description: '이름' })
+  @IsString()
+  @MinLength(2)
+  name: string;
+
+  @ApiProperty({ example: 'user@example.com' })
+  @IsEmail()
+  email: string;
+
+  @ApiProperty({ example: 'p@ssw0rd', minLength: 8 })
+  @IsString()
+  @MinLength(8)
+  password: string;
+}
+
+// update-user.dto.ts — @nestjs/swagger의 PartialType 사용 (Swagger 메타데이터 유지)
+import { PartialType } from '@nestjs/swagger';
+
+export class UpdateUserDto extends PartialType(CreateUserDto) {}
+```
+
+> `PartialType`은 반드시 `@nestjs/swagger`에서 import한다. `@nestjs/mapped-types`를 사용하면 Swagger 메타데이터가 손실된다.
+
+### 인증 엔드포인트 표시
+
+Bearer 토큰 인증이 필요한 엔드포인트에는 `@ApiBearerAuth()`를 추가한다.
+
+```ts
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
+@Get('me')
+getMe(@CurrentUser() user: UserPayload) { ... }
+```
+
+### 내부 엔드포인트 숨기기
+
+Swagger 문서에 노출하지 않을 엔드포인트에는 `@ApiExcludeEndpoint()`를 사용한다.
+
+```ts
+@ApiExcludeEndpoint()
+@Get('health')
+healthCheck() { ... }
+```
+
 ## 금지 패턴
 
 - Controller에 비즈니스 로직 작성 금지
 - Service에서 DB 직접 접근 금지 (Repository를 통할 것)
 - `main.ts`에 전역 Guard/Filter/Interceptor 등록 금지 (DI 불가)
 - `REQUEST` 스코프 남용 금지 (성능 비용 발생)
+- `PartialType`을 `@nestjs/mapped-types`에서 import 금지 (Swagger 메타데이터 손실)
