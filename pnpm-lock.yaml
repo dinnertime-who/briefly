@@ -265,7 +265,7 @@ importers:
         specifier: ^24.12.0
         version: 24.12.0
       '@types/react':
-        specifier: ^19.0.0
+        specifier: ^19.2.14
         version: 19.2.14
       tsup:
         specifier: ^8.5.1
@@ -277,14 +277,14 @@ importers:
   packages/hooks:
     dependencies:
       '@tanstack/react-query':
-        specifier: ^5.0.0
+        specifier: ^5.96.2
         version: 5.96.2(react@19.2.4)
     devDependencies:
       '@briefly/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/react':
-        specifier: ^19.0.0
+        specifier: ^19.2.14
         version: 19.2.14
       typescript:
         specifier: 5.9.3
@@ -371,7 +371,7 @@ importers:
         specifier: ^25.1.0
         version: 25.5.0
       '@types/react':
-        specifier: ^19.2.10
+        specifier: ^19.2.14
         version: 19.2.14
       '@types/react-dom':
         specifier: ^19.2.3
