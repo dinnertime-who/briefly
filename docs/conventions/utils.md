@@ -48,6 +48,17 @@ export function formatDate(date: Date): string {
 2. `src/<util-name>/index.ts`에 구현 작성
 3. `src/index.ts`에 `export * from './<util-name>'` 추가
 
+구현이 복잡해지면 유틸 폴더 안에 하위 폴더와 파일을 자유롭게 생성한다.
+`index.ts`는 외부에 공개할 것만 export하고, 내부 구현은 외부로 노출하지 않는다.
+
+```
+src/format-date/
+├── index.ts           # public export
+├── format-date.ts     # 핵심 구현
+└── helpers/
+    └── pad.ts         # 내부 헬퍼
+```
+
 ## 규칙
 
 - 유틸 함수는 순수 함수(pure function)로 작성한다. 사이드 이펙트 금지.
