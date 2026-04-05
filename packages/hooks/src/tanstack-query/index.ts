@@ -42,3 +42,6 @@ export type {
 
 // Types — 공통
 export type { QueryKey, QueryFunctionContext } from "@tanstack/react-query";
+
+// Option factories
+export { queryOptions, mutationOptions, infiniteQueryOptions } from "@tanstack/react-query";
