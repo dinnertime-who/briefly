@@ -1,0 +1,17 @@
+{
+  "name": "@briefly/hooks",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@tanstack/react-query": "^5.0.0"
+  },
+  "devDependencies": {
+    "@briefly/typescript-config": "workspace:*",
+    "@types/react": "^19.0.0",
+    "typescript": "5.9.3"
+  },
+  "exports": {
+    "./tanstack-query": "./src/tanstack-query/index.ts"
+  }
+}

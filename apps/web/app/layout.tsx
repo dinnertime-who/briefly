@@ -1,3 +1,4 @@
+import { TanstackQueryProvider } from "@briefly/hooks/tanstack-query";
 import { Toaster } from "@briefly/ui/components/sonner";
 import { TooltipProvider } from "@briefly/ui/components/tooltip";
 import type { Metadata } from "next";
@@ -20,10 +21,12 @@ export default function RootLayout({
     <html lang="ko">
       <body className="antialiased">
         <NuqsAdapter>
-          <TooltipProvider>
-            <ViewTransition>{children}</ViewTransition>
-            <Toaster />
-          </TooltipProvider>
+          <TanstackQueryProvider>
+            <TooltipProvider>
+              <ViewTransition>{children}</ViewTransition>
+              <Toaster />
+            </TooltipProvider>
+          </TanstackQueryProvider>
         </NuqsAdapter>
       </body>
     </html>

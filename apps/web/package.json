@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@briefly/auth": "workspace:*",
+    "@briefly/hooks": "workspace:*",
     "@briefly/ui": "workspace:*",
     "next": "16.2.2",
     "nuqs": "^2.8.9",

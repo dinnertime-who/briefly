@@ -20,6 +20,9 @@ importers:
 
   apps/admin:
     dependencies:
+      '@briefly/hooks':
+        specifier: workspace:*
+        version: link:../../packages/hooks
       '@briefly/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -124,6 +127,9 @@ importers:
       '@briefly/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@briefly/hooks':
+        specifier: workspace:*
+        version: link:../../packages/hooks
       '@briefly/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -264,6 +270,22 @@ importers:
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(@swc/core@1.15.21)(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)(typescript@5.9.3)
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
+  packages/hooks:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.0.0
+        version: 5.96.2(react@19.2.4)
+    devDependencies:
+      '@briefly/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -2656,6 +2678,14 @@ packages:
 
   '@tailwindcss/postcss@4.2.2':
     resolution: {integrity: sha512-n4goKQbW8RVXIbNKRB/45LzyUqN451deQK0nzIeauVEqjlI49slUlgKYJM2QyUzap/PcpnS7kzSUmPb1sCRvYQ==}
+
+  '@tanstack/query-core@5.96.2':
+    resolution: {integrity: sha512-hzI6cTVh4KNRk8UtoIBS7Lv9g6BnJPXvBKsvYH1aGWvv0347jT3BnSvztOE+kD76XGvZnRC/t6qdW1CaIfwCeA==}
+
+  '@tanstack/react-query@5.96.2':
+    resolution: {integrity: sha512-sYyzzJT4G0g02azzJ8o55VFFV31XvFpdUpG+unxS0vSaYsJnSPKGoI6WdPwUucJL1wpgGfwfmntNX/Ub1uOViA==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@thallesp/nestjs-better-auth@2.5.3':
     resolution: {integrity: sha512-JRGOoD5V6Z6l/RGs+CdEgAdedDwsTXwsKh9sb9vSDbarTd4k0x+YwLw2DACcm+Xo8HL0159+GROsKeNmpVo/EQ==}
@@ -7546,6 +7576,13 @@ snapshots:
       '@tailwindcss/oxide': 4.2.2
       postcss: 8.5.8
       tailwindcss: 4.2.2
+
+  '@tanstack/query-core@5.96.2': {}
+
+  '@tanstack/react-query@5.96.2(react@19.2.4)':
+    dependencies:
+      '@tanstack/query-core': 5.96.2
+      react: 19.2.4
 
   '@thallesp/nestjs-better-auth@2.5.3(@nestjs/common@11.1.18(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.18)(better-auth@1.5.6(@opentelemetry/api@1.9.1)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@opentelemetry/api@1.9.1)(kysely@0.28.15)(postgres@3.4.8))(next@16.2.2(@opentelemetry/api@1.9.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(express@5.2.1)(graphql@16.13.2)(qs@6.15.0)(typescript@5.9.3)':
     dependencies:
