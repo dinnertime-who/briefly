@@ -33,10 +33,15 @@ jobs:
           ref: ${{ steps.pr.outputs.branch }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
 
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
@@ -60,10 +65,7 @@ jobs:
           커밋 메시지는 프로젝트 컨벤션(docs/conventions/git.md)을 따른다."
 
       - name: Push changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet && git diff --staged --quiet || git push origin HEAD
+        run: git push origin HEAD
 
       - name: Post reaction
         uses: actions/github-script@v7
