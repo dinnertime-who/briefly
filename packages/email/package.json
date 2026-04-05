@@ -22,10 +22,10 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@react-email/components": "^0.0.36",
-    "@react-email/render": "^1.4.0",
+    "@react-email/components": "^1.0.11",
+    "@react-email/render": "^2.0.5",
     "react": "^19.2.4",
-    "resend": "^4.8.0"
+    "resend": "^6.10.0"
   },
   "devDependencies": {
     "@briefly/typescript-config": "workspace:*",
