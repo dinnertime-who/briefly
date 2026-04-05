@@ -1,5 +1,8 @@
+import { Toaster } from "@briefly/ui/components/sonner";
 import { TooltipProvider } from "@briefly/ui/components/tooltip";
 import type { Metadata } from "next";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { ViewTransition } from "react";
 
 import "@briefly/ui/globals.css";
 
@@ -16,7 +19,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="antialiased">
-        <TooltipProvider>{children}</TooltipProvider>
+        <NuqsAdapter>
+          <TooltipProvider>
+            <ViewTransition>{children}</ViewTransition>
+            <Toaster />
+          </TooltipProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );
