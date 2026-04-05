@@ -41,6 +41,7 @@ pnpm --filter @briefly/db push      # DB 스키마 반영
 - [데이터베이스 (Drizzle ORM)](docs/conventions/database.md)
 - [패키지 구조 및 의존성](docs/conventions/packages.md)
 - [Git 브랜치 전략](docs/conventions/git.md)
+- [@briefly/utils 패키지](docs/conventions/utils.md)
 
 
 ### 실행 계획
